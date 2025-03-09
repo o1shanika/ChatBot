@@ -11,7 +11,7 @@ PROMPT_FOLDER = "prompts"
 IMAGE_FOLDER = "images"
 
 # Your Gemini API Key (Replace with your actual API key)
-GEMINI_API_KEY = "AIzaSyBwtvovlivcWv2k_L62BxfMDE4sAGXLOEc"
+GEMINI_API_KEY = "replace"
 
 # Define partners with corresponding image and prompt file
 partners = {
