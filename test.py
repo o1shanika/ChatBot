@@ -17,6 +17,10 @@ GEMINI_API_KEY = "AIzaSyBwtvovlivcWv2k_L62BxfMDE4sAGXLOEc"
 partners = {
     "Male Partner": {"image": "img1.jpg", "prompt_file": "softbf.txt"},
     "Female Partner": {"image": "img3.jpg", "prompt_file": "softgf.txt"},
+    #"Software Partner": {"image": "software_partner.jpg", "prompt_file": "software_partner.txt"},
+    #"Virtual Assistant": {"image": "virtual_assistant.jpg", "prompt_file": "virtual_assistant.txt"},
+    #"Business Partner": {"image": "business_partner.jpg", "prompt_file": "business_partner.txt"},
+    #"Creative Partner": {"image": "creative_partner.jpg", "prompt_file": "creative_partner.txt"}
 }
 
 # Function to load prompt from a text file
@@ -70,7 +74,9 @@ def partner_selection_page():
 def chat_with_partner_page():
     st.title(f"Chat with {st.session_state.selected_partner}")
 
+    
     col1, col2 = st.columns([6, 1])
+
 
     with col2:
         partner_info = partners[st.session_state.selected_partner]
@@ -88,14 +94,13 @@ def chat_with_partner_page():
             elif message["role"] == "ai":
                 st.write(f"**{st.session_state.selected_partner}**: {message['text']}")
 
-        user_message = st.text_input("Your message:", key="message_input")
+        user_message = st.text_input("Your message:")
 
         if st.button("Send"):
             if user_message:
                 st.session_state.messages.append({"role": "user", "text": user_message})
                 ai_response = get_ai_response(st.session_state.partner_prompt, user_message)
                 st.session_state.messages.append({"role": "ai", "text": ai_response})
-                st.session_state["message_input"] = ""  # Clear input field
                 st.rerun()
 
 # Decide which page to show
@@ -103,3 +108,4 @@ if 'selected_partner' not in st.session_state:
     partner_selection_page()
 else:
     chat_with_partner_page()
+
